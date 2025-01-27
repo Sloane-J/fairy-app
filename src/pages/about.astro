@@ -1,0 +1,134 @@
+// File: src/pages/about.astro
+---
+import Layout from '../layouts/Layout.astro';
+import Timeline from '../components/about/Timeline';
+import TeamMember from '../components/about/TeamMember';
+import { CheckCircle, Users, Target, Star } from 'lucide-react';
+
+const achievements = [
+  { number: '500+', label: 'Clients Coached' },
+  { number: '15+', label: 'Years Experience' },
+  { number: '98%', label: 'Success Rate' },
+  { number: '1000+', label: 'Online Sessions' },
+];
+
+const team = [
+  {
+    name: 'Sarah Johnson',
+    role: 'Head Coach & Founder',
+    bio: 'Digital marketing expert with 15+ years of experience helping businesses grow their online presence.',
+    image: '/placeholder.svg?height=400&width=400',
+    social: {
+      twitter: '#',
+      linkedin: '#',
+      instagram: '#'
+    }
+  },
+  {
+    name: 'Michael Chen',
+    role: 'Life Coach',
+    bio: 'Certified life coach specializing in personal development and work-life balance strategies.',
+    image: '/placeholder.svg?height=400&width=400',
+    social: {
+      twitter: '#',
+      linkedin: '#',
+      instagram: '#'
+    }
+  },
+  {
+    name: 'Emma Davis',
+    role: 'Marketing Strategist',
+    bio: 'Social media expert helping clients build strong online brands and engage with their audience.',
+    image: '/placeholder.svg?height=400&width=400',
+    social: {
+      twitter: '#',
+      linkedin: '#',
+      instagram: '#'
+    }
+  }
+];
+
+const seo = {
+  title: 'About Us - CoachingPro',
+  description: 'Learn about our journey, mission, and the team behind CoachingPro.',
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <div class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+          Empowering Your Journey to Success
+        </h1>
+        <p class="text-lg text-text-light">
+          We're passionate about helping individuals and businesses reach their full potential through expert coaching and guidance.
+        </p>
+      </div>
+
+      {/* Achievements */}
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-24">
+        {achievements.map(({ number, label }) => (
+          <div class="text-center">
+            <div class="text-4xl font-bold text-primary mb-2">{number}</div>
+            <div class="text-text-light">{label}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Mission */}
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-24">
+        <div>
+          <h2 class="text-3xl font-display font-bold text-text mb-6">
+            Our Mission & Values
+          </h2>
+          <p class="text-text-light mb-6">
+            At CoachingPro, we believe in the transformative power of personalized coaching. Our mission is to provide expert guidance that empowers individuals and businesses to achieve their goals and realize their full potential.
+          </p>
+          <div class="space-y-4">
+            {[
+              'Personalized Approach to Growth',
+              'Expert Guidance & Support',
+              'Proven Methodologies',
+              'Continuous Learning'
+            ].map((value) => (
+              <div class="flex items-center gap-3">
+                <CheckCircle className="h-5 w-5 text-primary" />
+                <span class="text-text-light">{value}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="relative">
+          <img
+            src="/placeholder.svg?height=600&width=800"
+            alt="Our Mission"
+            class="rounded-xl"
+          />
+          <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent rounded-xl"></div>
+        </div>
+      </div>
+
+      {/* Team */}
+      <div class="mb-24">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl font-display font-bold text-text mb-6">
+            Meet Our Expert Team
+          </h2>
+          <p class="text-text-light">
+            Our team of experienced professionals is dedicated to helping you achieve your goals.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {team.map((member) => (
+            <TeamMember {...member} client:visible />
+          ))}
+        </div>
+      </div>
+
+      {/* Timeline */}
+      <Timeline client:visible />
+    </div>
+  </div>
+</Layout>

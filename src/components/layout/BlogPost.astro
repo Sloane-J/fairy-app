@@ -1,0 +1,118 @@
+---
+import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
+import { Calendar, Clock, ArrowLeft } from 'lucide-react';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  readTime: string;
+  category: string;
+  image: string;
+  author: {
+    name: string;
+    title: string;
+    image: string;
+  };
+}
+
+const { title, description, pubDate, readTime, category, image, author } = Astro.props;
+const formattedDate = new Date(pubDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout title={`${title} - CoachingPro Blog`} description={description}>
+  <article class="py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Back Button */}
+      <a
+        href="/blog"
+        class="inline-flex items-center text-text-light hover:text-primary mb-8 transition-colors duration-200"
+      >
+        <ArrowLeft className="h-5 w-5 mr-2" />
+        Back to Blog
+      </a>
+
+      {/* Article Header */}
+      <header class="mb-12">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="px-3 py-1 text-sm font-medium text-primary bg-primary/10 rounded-full">
+            {category}
+          </span>
+          <div class="flex items-center text-sm text-text-light">
+            <Calendar className="h-4 w-4 mr-1" />
+            {formattedDate}
+          </div>
+          <div class="flex items-center text-sm text-text-light">
+            <Clock className="h-4 w-4 mr-1" />
+            {readTime}
+          </div>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+          {title}
+        </h1>
+
+        <p class="text-xl text-text-light mb-8">
+          {description}
+        </p>
+
+        {/* Author */}
+        <div class="flex items-center">
+          <Image
+            src={author.image || "/placeholder.svg"}
+            alt={author.name}
+            width={48}
+            height={48}
+            class="rounded-full"
+          />
+          <div class="ml-4">
+            <div class="font-medium text-text">{author.name}</div>
+            <div class="text-sm text-text-light">{author.title}</div>
+          </div>
+        </div>
+      </header>
+
+      {/* Featured Image */}
+      <div class="relative aspect-video rounded-xl overflow-hidden mb-12">
+        <Image
+          src={image || "/placeholder.svg"}
+          alt={title}
+          width={1200}
+          height={675}
+          class="object-cover"
+        />
+      </div>
+
+      {/* Article Content */}
+      <div class="prose prose-lg max-w-none">
+        <slot />
+      </div>
+
+      {/* Article Footer */}
+      <footer class="mt-12 pt-12 border-t border-secondary/20">
+        <div class="flex flex-col sm:flex-row justify-between items-center gap-6">
+          <div class="flex items-center gap-4">
+            <span class="text-text-light">Share this article:</span>
+            <div class="flex gap-4">
+              <a href="#" class="text-text-light hover:text-primary">Twitter</a>
+              <a href="#" class="text-text-light hover:text-primary">LinkedIn</a>
+              <a href="#" class="text-text-light hover:text-primary">Facebook</a>
+            </div>
+          </div>
+          <a
+            href="/blog"
+            class="inline-flex items-center text-primary hover:text-primary-dark"
+          >
+            <ArrowLeft className="h-5 w-5 mr-2" />
+            Back to Blog
+          </a>
+        </div>
+      </footer>
+    </div>
+  </article>
+</Layout>

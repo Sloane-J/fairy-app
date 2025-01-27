@@ -1,0 +1,37 @@
+---
+import { Image } from 'astro:assets';
+import Navigation from './Navigation';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-secondary/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center space-x-2">
+        <Image
+          src="/logo.svg"
+          alt="Coaching Website Logo"
+          width={40}
+          height={40}
+          class="w-10 h-10"
+        />
+        <span class="text-xl font-display font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          CoachingPro
+        </span>
+      </a>
+
+      <!-- Navigation (React Component) -->
+      <Navigation client:load />
+
+      <!-- CTA Button (Desktop) -->
+      <div class="hidden md:block">
+        <a
+          href="/contact"
+          class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
+        >
+          Book Free Consultation
+        </a>
+      </div>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,121 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TestimonialCard from '../components/testimonials/TestimonialCard';
+import { Star, Quote } from 'lucide-react';
+const testimonials = [
+{
+name: 'Sarah Johnson',
+role: 'Digital Marketing Manager',
+company: 'Tech Solutions Inc.',
+image: '/placeholder.svg?height=400&width=400',
+content: 'The coaching program transformed my approach to digital marketing. The personalized guidance and practical strategies helped me achieve remarkable results. My social media engagement increased by 300% within three months.',
+rating: 5,
+category: 'Digital Marketing'
+},
+{
+name: 'Michael Chen',
+role: 'Entrepreneur',
+company: 'Growth Ventures',
+image: '/placeholder.svg?height=400&width=400',
+content: 'As a business owner, the insights and support I received were invaluable. The coaching helped me streamline my operations and grow my online presence. Revenue increased by 150% in just six months.',
+rating: 5,
+category: 'Business Coaching'
+},
+{
+name: 'Emma Davis',
+role: 'Content Creator',
+company: 'Creative Studios',
+image: '/placeholder.svg?height=400&width=400',
+content: 'The structured approach to personal development and digital skills has been game-changing. I've seen tremendous growth both personally and professionally. My audience grew from 1,000 to 50,000 followers.',
+rating: 5,
+category: 'Personal Development'
+},
+// Add more testimonials as needed
+];
+
+const categories = ['All', 'Digital Marketing', 'Business Coaching', 'Personal Development'];
+
+const seo = {
+    title: 'Testimonials - CoachingPro',
+    description: 'Read success stories from our clients who have transformed their lives and businesses through our coaching programs.',
+    };
+---  
+    <Layout title={seo.title} description={seo.description}>
+      <div class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
+          <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+              Success Stories
+            </h1>
+            <p class="text-lg text-text-light">
+              Discover how our coaching programs have helped individuals and businesses achieve their goals and transform their lives.
+            </p>
+          </div>
+            {/* Featured Testimonial */}
+  <div class="relative bg-background-alt rounded-2xl p-8 md:p-12 mb-16">
+    <div class="absolute top-8 right-8 text-primary/20">
+      <Quote className="h-24 w-24" />
+    </div>
+    <div class="relative max-w-3xl">
+      <div class="flex items-center space-x-1 mb-6">
+        {[...Array(5)].map((_, i) => (
+          <Star key={i} className="h-6 w-6 text-primary fill-current" />
+        ))}
+      </div>
+      <blockquote class="text-2xl font-display text-text mb-6">
+        "The coaching program has been transformative for both my personal growth and business success. The strategies I learned have helped me achieve goals I never thought possible."
+      </blockquote>
+      <div class="flex items-center">
+        <img
+          src="/placeholder.svg?height=64&width=64"
+          alt="Featured Client"
+          class="h-16 w-16 rounded-full"
+        />
+        <div class="ml-4">
+          <div class="font-semibold text-text">Jennifer Smith</div>
+          <div class="text-text-light">CEO, Digital Innovations</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Category Filter */}
+  <div class="flex flex-wrap justify-center gap-4 mb-12">
+    {categories.map((category) => (
+      <button
+        class={`px-6 py-2 rounded-full text-sm font-medium transition-colors duration-200 
+          ${category === 'All' 
+            ? 'bg-primary text-white' 
+            : 'bg-secondary/10 text-text-light hover:bg-primary/10 hover:text-primary'}`}
+      >
+        {category}
+      </button>
+    ))}
+  </div>
+
+  {/* Testimonials Grid */}
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {testimonials.map((testimonial) => (
+      <TestimonialCard {...testimonial} client:visible />
+    ))}
+  </div>
+
+  {/* CTA Section */}
+  <div class="text-center mt-16">
+    <h2 class="text-2xl font-display font-bold text-text mb-4">
+      Ready to Start Your Success Story?
+    </h2>
+    <p class="text-text-light mb-8">
+      Join our coaching program and transform your life and business.
+    </p>
+    <a
+      href="/contact"
+      class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
+    >
+      Schedule a Free Consultation
+    </a>
+  </div>
+</div>
+</div>
+</Layout>

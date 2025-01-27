@@ -1,0 +1,121 @@
+// File: src/pages/services.astro
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCard from '../components/services/ServiceCard';
+import { CheckCircle, ArrowRight } from 'lucide-react';
+
+const services = [
+  {
+    title: 'Digital Marketing Coaching',
+    description: 'Master the art of digital marketing with personalized guidance and practical strategies.',
+    features: [
+      'Social Media Strategy Development',
+      'Content Marketing Mastery',
+      'SEO & Analytics Training',
+      'Brand Building Techniques',
+      'Paid Advertising Management',
+    ],
+    price: '$199',
+    period: 'per month',
+    image: '/placeholder.svg?height=400&width=600',
+    href: '/services/digital-marketing'
+  },
+  {
+    title: 'Life Coaching Sessions',
+    description: 'Transform your personal and professional life with expert guidance and support.',
+    features: [
+      'Goal Setting & Achievement',
+      'Work-Life Balance Strategies',
+      'Personal Development Plan',
+      'Stress Management',
+      'Career Advancement Tips',
+    ],
+    price: '$149',
+    period: 'per session',
+    image: '/placeholder.svg?height=400&width=600',
+    href: '/services/life-coaching'
+  },
+  {
+    title: 'Online Courses',
+    description: 'Self-paced learning programs designed to help you master new skills.',
+    features: [
+      'Comprehensive Course Material',
+      'Practice Exercises',
+      'Video Tutorials',
+      'Progress Tracking',
+      'Community Support',
+    ],
+    price: '$99',
+    period: 'per course',
+    image: '/placeholder.svg?height=400&width=600',
+    href: '/services/courses'
+  }
+];
+
+const seo = {
+  title: 'Services - CoachingPro',
+  description: 'Explore our range of coaching services designed to help you achieve your personal and professional goals.',
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <div class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Header */}
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+          Services Designed for Your Success
+        </h1>
+        <p class="text-lg text-text-light">
+          Choose from our range of specialized coaching services and start your journey towards excellence today.
+        </p>
+      </div>
+
+      {/* Services Grid */}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {services.map((service) => (
+          <ServiceCard {...service} client:visible />
+        ))}
+      </div>
+
+      {/* Why Choose Us */}
+      <div class="bg-background-alt rounded-2xl p-8 md:p-12">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl font-display font-bold text-text mb-4">
+            Why Choose Our Services?
+          </h2>
+          <p class="text-text-light">
+            We provide comprehensive support and proven strategies to help you achieve your goals.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {[
+            'Personalized Approach',
+            'Expert Guidance',
+            'Flexible Scheduling',
+            'Proven Results',
+            'Ongoing Support',
+            'Resource Library'
+          ].map((feature) => (
+            <div class="flex items-start gap-4">
+              <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
+              <span class="text-text-light">{feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* CTA */}
+      <div class="text-center mt-16">
+        <a
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 text-lg font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
+        >
+          Schedule a Free Consultation
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

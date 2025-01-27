@@ -1,0 +1,110 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/shared/BlogCard';
+import { Search } from 'lucide-react';
+
+// Example blog posts data (in production, this would come from your content collection)
+const posts = [
+  {
+    title: 'Mastering Social Media Marketing in 2024',
+    excerpt: 'Learn the latest strategies and tools for effective social media marketing in the current digital landscape.',
+    date: 'Jan 15, 2024',
+    readTime: '5 min read',
+    image: '/placeholder.svg?height=400&width=600',
+    category: 'Digital Marketing',
+    slug: 'mastering-social-media-marketing-2024'
+  },
+  {
+    title: 'Building a Sustainable Work-Life Balance',
+    excerpt: 'Discover practical tips and strategies for maintaining a healthy balance between your professional and personal life.',
+    date: 'Jan 12, 2024',
+    readTime: '4 min read',
+    image: '/placeholder.svg?height=400&width=600',
+    category: 'Life Coaching',
+    slug: 'building-sustainable-work-life-balance'
+  },
+  {
+    title: 'Content Creation Tips for Beginners',
+    excerpt: 'A comprehensive guide to starting your content creation journey with practical examples and tools.',
+    date: 'Jan 10, 2024',
+    readTime: '6 min read',
+    image: '/placeholder.svg?height=400&width=600',
+    category: 'Content Strategy',
+    slug: 'content-creation-tips-beginners'
+  }
+];
+
+const categories = ['All', 'Digital Marketing', 'Life Coaching', 'Content Strategy', 'Personal Development'];
+
+const seo = {
+  title: 'Blog - CoachingPro',
+  description: 'Explore our latest articles on digital marketing, personal development, and success strategies.',
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <div class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+          Latest Insights & Tips
+        </h1>
+        <p class="text-lg text-text-light">
+          Discover practical advice, success stories, and expert insights to help you grow personally and professionally.
+        </p>
+      </div>
+
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+        {/* Search Bar */}
+        <div class="relative w-full md:w-96">
+          <input
+            type="search"
+            placeholder="Search articles..."
+            class="w-full pl-12 pr-4 py-3 rounded-lg border border-secondary/20 focus:outline-none focus:ring-2 focus:ring-primary/50"
+          />
+          <Search class="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-text-light" />
+        </div>
+
+        {/* Categories */}
+        <div class="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <button
+              class={`px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 
+                ${category === 'All' 
+                  ? 'bg-primary text-white' 
+                  : 'bg-secondary/10 text-text-light hover:bg-primary/10 hover:text-primary'}`}
+            >
+              {category}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Blog Grid */}
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {posts.map((post) => (
+          <BlogCard {...post} client:visible />
+        ))}
+      </div>
+
+      {/* Pagination */}
+      <div class="flex justify-center mt-12">
+        <nav class="flex items-center gap-2">
+          <button class="p-2 rounded-lg border border-secondary/20 text-text-light hover:border-primary/40 hover:text-primary disabled:opacity-50">
+            Previous
+          </button>
+          <button class="px-4 py-2 rounded-lg bg-primary text-white">1</button>
+          <button class="px-4 py-2 rounded-lg border border-secondary/20 text-text-light hover:border-primary/40 hover:text-primary">
+            2
+          </button>
+          <button class="px-4 py-2 rounded-lg border border-secondary/20 text-text-light hover:border-primary/40 hover:text-primary">
+            3
+          </button>
+          <button class="p-2 rounded-lg border border-secondary/20 text-text-light hover:border-primary/40 hover:text-primary">
+            Next
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</Layout>
