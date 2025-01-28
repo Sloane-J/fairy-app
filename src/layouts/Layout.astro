@@ -1,3 +1,4 @@
+// File: src/layouts/Layout.astro
 ---
 import { ViewTransitions } from 'astro:transitions';
 import Header from '../components/layout/Header.astro';
@@ -6,11 +7,13 @@ import Footer from '../components/layout/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  canonical?: string;
 }
 
 const { 
   title, 
-  description = "Transform your life and business with expert coaching and digital marketing guidance."
+  description = "Transform your life and business with expert coaching and digital marketing guidance.",
+  canonical = Astro.url.href
 } = Astro.props;
 ---
 
@@ -19,7 +22,11 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FF9F8C" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
     <title>{title}</title>
     <meta name="description" content={description} />
     
@@ -47,12 +54,15 @@ const {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content="CoachingPro" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:site" content="@coachingpro" />
   </head>
   <body class="bg-background text-text antialiased">
     <div class="flex min-h-screen flex-col">

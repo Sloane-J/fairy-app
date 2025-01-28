@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/home/Hero';
-import Introduction from '../components/home/Introduction';
 import Services from '../components/home/Services';
 import Testimonials from '../components/home/Testimonials';
 import Newsletter from '../components/shared/Newsletter';
@@ -13,9 +12,12 @@ const seo = {
 ---
 
 <Layout title={seo.title} description={seo.description}>
-  <Hero client:load />
-  <Introduction client:visible />
-  <Services client:visible />
-  <Testimonials client:visible />
-  <Newsletter client:visible />
+  <main>
+    <Hero client:load />
+    <Services client:visible />
+    <div class="bg-background-alt">
+      <Testimonials client:visible />
+    </div>
+    <Newsletter client:visible />
+  </main>
 </Layout>
