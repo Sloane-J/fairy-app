@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { FileText } from 'lucide-react';
+
+const seo = {
+  title: 'Terms of Service - CoachingPro',
+  description: 'Read our terms of service and user agreement.',
+};
+
+const sections = [
+  {
+    title: 'Acceptance of Terms',
+    content: `By accessing and using our services, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using our services.`
+  },
+  {
+    title: 'Use License',
+    content: `We grant you a limited, non-exclusive, non-transferable, revocable license to access and use our services for personal, non-commercial purposes. This license is subject to these Terms of Service.`
+  },
+  {
+    title: 'Service Description',
+    content: `We provide coaching services, online courses, and digital content. We reserve the right to:
+    - Modify or discontinue any service without notice
+    - Refuse service to anyone for any reason
+    - Change service fees with appropriate notice`
+  },
+  {
+    title: 'User Responsibilities',
+    content: `You are responsible for:
+    - Maintaining the confidentiality of your account
+    - All activities that occur under your account
+    - Ensuring your use complies with applicable laws
+    - Providing accurate information
+    - Respecting intellectual property rights`
+  },
+  {
+    title: 'Payment Terms',
+    content: `- Payment is required for certain services
+    - All fees are non-refundable unless stated otherwise
+    - You agree to provide current, complete, and accurate payment information
+    - We use secure third-party payment processors`
+  },
+  {
+    title: 'Intellectual Property',
+    content: `All content, features, and functionality are owned by CoachingPro and are protected by international copyright, trademark, and other intellectual property laws.`
+  },
+  {
+    title: 'Limitation of Liability',
+    content: `We shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of our services.`
+  }
+];
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <div class="py-24">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <FileText className="h-8 w-8 text-primary" />
+        </div>
+        <h1 class="text-4xl font-display font-bold text-text mb-4">
+          Terms of Service
+        </h1>
+        <p class="text-text-light">
+          Last updated: January 2024
+        </p>
+      </div>
+
+      <div class="prose prose-lg max-w-none">
+        <p class="lead">
+          Please read these Terms of Service carefully before using our services. By using our services, you agree to be bound by these terms.
+        </p>
+
+        {sections.map((section) => (
+          <section class="mt-12">
+            <h2 class="text-2xl font-display font-bold text-text mb-4">
+              {section.title}
+            </h2>
+            <div class="text-text-light whitespace-pre-line">
+              {section.content}
+            </div>
+          </section>
+        ))}
+
+        <section class="mt-12">
+          <h2 class="text-2xl font-display font-bold text-text mb-4">
+            Contact Us
+          </h2>
+          <p class="text-text-light">
+            If you have any questions about these Terms of Service, please contact us at:
+          </p>
+          <ul class="mt-4 space-y-2 text-text-light">
+            <li>Email: legal@coachingpro.com</li>
+            <li>Address: 123 Coaching Street, Business City, 12345</li>
+            <li>Phone: (555) 123-4567</li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</Layout>
