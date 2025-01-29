@@ -32,7 +32,7 @@ export default function Hero() {
           >
             Unlock Your Full Potential with{' '}
             <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Expert Coaching
+              Coach Caleb
             </span>
           </motion.h1>
 
@@ -42,7 +42,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg sm:text-xl text-text-light max-w-2xl mx-auto mb-8"
           >
-            Discover personalized strategies for success in digital marketing and lifestyle optimization. 
+            Discover personalized strategies for success in affeliate marketing and lifestyle optimization. 
             Start your journey to excellence today.
           </motion.p>
 
