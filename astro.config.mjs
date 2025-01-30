@@ -1,42 +1,21 @@
-// File: astro.config.mjs
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 
 export default defineConfig({
   integrations: [
-    react({
-      include: ['**/react/*', '**/React/*', '**/*.tsx'],
-      // Enable React Fast Refresh
-      fastRefresh: true,
-    }),
+    react(),  // The include patterns aren't needed, Astro handles this automatically
     tailwind({
-      // Enable Just-in-Time mode
       config: { applyBaseStyles: false }
     }),
   ],
-  site: 'https://yourcoachingwebsite.com',
+  // Remove the site URL unless you're specifically using it for something
   output: 'static',
   vite: {
     ssr: {
-      noExternal: ['framer-motion'],
+      noExternal: ['framer-motion']
     },
-    // Add build optimizations
-    build: {
-      // Enable minification
-      minify: 'terser',
-      // Improve chunk loading
-      rollupOptions: {
-        output: {
-          manualChunks: {
-            'framer-motion': ['framer-motion'],
-          },
-        },
-      },
-    },
-    // Add dev optimizations
-    optimizeDeps: {
-      include: ['react', 'react-dom', 'framer-motion'],
-    },
-  },
+    // Remove the manual build optimizations - Vite handles these well by default
+    // and they might be causing the Terser error
+  }
 });
