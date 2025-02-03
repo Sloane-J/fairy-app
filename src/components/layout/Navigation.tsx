@@ -26,6 +26,11 @@ export default function Navigation() {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
+  // Handle clicks outside to close the menu
+  const handleOverlayClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="flex items-center relative">
       {/* Desktop Navigation */}
@@ -73,7 +78,7 @@ export default function Navigation() {
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
-              onClick={() => setIsOpen(false)}
+              onClick={handleOverlayClick}
             />
 
             {/* Slide-in Menu */}
