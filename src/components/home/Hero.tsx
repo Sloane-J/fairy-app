@@ -30,10 +30,12 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-text mb-6"
           >
-            Unlock Your Full Potential with{' '}
-            <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
-              Coach Caleb
+            Unlock Your Full Potential with Us at{' '}
+            <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
+              Affeliate Nexus
             </span>
+
+
           </motion.h1>
 
           <motion.p
