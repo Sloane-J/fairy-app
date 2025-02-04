@@ -44,7 +44,7 @@ export default function Hero() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-lg sm:text-xl text-text-light max-w-2xl mx-auto mb-8"
           >
-            Discover personalized strategies for success in affeliate marketing and lifestyle optimization. 
+            Discover personalized strategies for success in affiliate marketing and lifestyle optimization. 
             Start your journey to excellence today.
           </motion.p>
 
