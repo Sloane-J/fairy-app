@@ -5,7 +5,7 @@ import { ArrowRight, BookOpen, BarChart, Users, Calendar } from 'lucide-react';
 
 const services = [
   {
-    title: 'Affeliate Marketing Mastery',
+    title: 'Affiliate Marketing Mastery',
     description: 'Master the art of affeliate marketing with comprehensive training in social media, content creation, and online presence.',
     icon: BarChart,
     features: ['Social Media Strategy', 'Content Creation', 'Analytics & ROI'],

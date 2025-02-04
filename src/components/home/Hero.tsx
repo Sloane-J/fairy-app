@@ -32,7 +32,7 @@ export default function Hero() {
           >
             Unlock Your Full Potential with Us at{' '}
             <span className="bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
-              Affeliate Nexus
+              Affiliate Nexus
             </span>
 
 
