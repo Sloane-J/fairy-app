@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const menuItems = [
@@ -14,19 +14,6 @@ const menuItems = [
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
-  const menuRef = useRef(null);
-
-  // Prevent body scroll when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [isOpen]);
 
   // Close menu when pressing escape key
   useEffect(() => {
@@ -39,10 +26,15 @@ export default function Navigation() {
     return () => window.removeEventListener("keydown", handleEsc);
   }, []);
 
+  // Handle clicks outside to close the menu
+  const handleOverlayClick = () => {
+    setIsOpen(false);
+  };
+
   return (
-    <nav className="relative">
+    <nav className="flex items-center relative">
       {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center space-x-8">
+      <div className="hidden md:flex space-x-8">
         {menuItems.map((item) => (
           <a
             key={item.name}
@@ -52,12 +44,6 @@ export default function Navigation() {
             {item.name}
           </a>
         ))}
-        <a
-          href="/contact"
-          className="px-5 py-2 text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
-        >
-          Book Free Consultation
-        </a>
       </div>
 
       {/* Mobile Navigation Button */}
@@ -66,89 +52,61 @@ export default function Navigation() {
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
       >
-        <div className="w-6 h-6 flex flex-col justify-between">
+        <div className="w-6 h-6 flex flex-col justify-between relative">
           <motion.span
-            animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="w-full h-0.5 bg-black origin-left"
+            animate={isOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            className="absolute top-0 left-0 w-full h-0.5 bg-text transition-all"
           />
           <motion.span
             animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-            transition={{ duration: 0.2 }}
-            className="w-full h-0.5 bg-black"
+            className="absolute top-1/2 left-0 w-full h-0.5 bg-text transition-opacity"
           />
           <motion.span
-            animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-            transition={{ duration: 0.2 }}
-            className="w-full h-0.5 bg-black origin-left"
+            animate={isOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            className="absolute bottom-0 left-0 w-full h-0.5 bg-text transition-all"
           />
         </div>
       </button>
 
-      {/* Mobile Navigation Menu with Overlay */}
+      {/* Mobile Navigation Menu & Overlay */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Dark Overlay */}
+            {/* Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40 md:hidden"
-              onClick={() => setIsOpen(false)}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+              onClick={handleOverlayClick}
             />
 
-            {/* Mobile Menu */}
+            {/* Slide-in Menu */}
             <motion.div
-              ref={menuRef}
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 right-0 h-full w-full bg-white z-50 md:hidden overflow-y-auto"
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
+              className="fixed top-0 right-0 h-screen w-3/4 max-w-sm bg-background border-l border-secondary/20 shadow-lg flex flex-col items-center pt-20 z-50"
             >
-              {/* Close Button */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="absolute top-4 right-4 p-2"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
-
-              {/* Mobile Menu Items */}
-              <div className="flex flex-col items-center justify-center min-h-screen pt-16 pb-8 px-4">
-                <div className="flex flex-col items-center space-y-6 w-full">
-                  {menuItems.map((item, index) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="text-xl font-medium text-gray-800 hover:text-primary transition-colors duration-200 w-full text-center py-2"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.name}
-                    </a>
-                  ))}
+              <div className="flex flex-col items-center w-full space-y-6">
+                {menuItems.map((item) => (
                   <a
-                    href="/contact"
-                    className="mt-4 w-full max-w-xs text-center px-5 py-3 text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
+                    key={item.name}
+                    href={item.href}
+                    className="text-lg font-medium text-text-light hover:text-primary transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
-                    Book Free Consultation
+                    {item.name}
                   </a>
-                </div>
+                ))}
+                <a
+                  href="/contact"
+                  className="mt-4 w-5/6 text-center px-5 py-3 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
+                  onClick={() => setIsOpen(false)}
+                >
+                  Book Free Consultation
+                </a>
               </div>
             </motion.div>
           </>
