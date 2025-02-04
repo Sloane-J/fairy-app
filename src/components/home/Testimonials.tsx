@@ -6,24 +6,24 @@ import { Star } from 'lucide-react';
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
+    name: 'Sir Fosu',
     role: 'Digital Marketing Manager',
     image: '/placeholder.svg?height=96&width=96',
-    content: 'The coaching program transformed my approach to digital marketing. The personalized guidance and practical strategies helped me achieve remarkable results.',
+    content: 'The coaching program transformed my approach to digital marketing. The personalized guidance and practical strategies helped me achieve remarkable results. I made more than $20 from just one sale. It is up to you to change your life aside your monthly salary. This will pay you more if you work hard. Coach Caleb has really helped me',
     rating: 5,
   },
   {
-    name: 'Michael Chen',
+    name: 'Hephzibah',
     role: 'Entrepreneur',
     image: '/placeholder.svg?height=96&width=96',
-    content: 'As a business owner, the insights and support I received were invaluable. The coaching helped me streamline my operations and grow my online presence.',
+    content: 'As a business owner, the insights and support I received were invaluable. Thank you Coach Caleb for this opportunity and encouragement. I can now make more money with just my smart phone. Hey Guys, you should consider learning with Affeliate Nexus',
     rating: 5,
   },
   {
-    name: 'Emma Davis',
+    name: 'Mrs. Kombian',
     role: 'Content Creator',
     image: '/placeholder.svg?height=96&width=96',
-    content: 'The structured approach to personal development and digital skills has been game-changing. I have seen tremendous growth both personally and professionally.',
+    content: 'The structured approach to personal development and digital skills has been game-changing. I have seen tremendous growth both personally and professionally. I made my first sale after following what Coach Caleb taught me, and that was over $30',
     rating: 5,
   },
 ];
