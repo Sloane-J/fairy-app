@@ -1,0 +1,153 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PricingTable from '../../components/services/PricingTable';
+import FAQ from '../../components/shared/FAQ';
+import { CheckCircle, BarChart, Users, Target, ArrowRight } from 'lucide-react';
+
+const features = [
+  {
+    title: 'Social Media Strategy',
+    description: 'Learn to create and execute effective social media campaigns across multiple platforms.',
+    icon: Users,
+  },
+  {
+    title: 'Content Marketing',
+    description: 'Master the art of creating engaging content that drives traffic and conversions.',
+    icon: Target,
+  },
+  {
+    title: 'Analytics & ROI',
+    description: 'Understand key metrics and measure the success of your digital marketing efforts.',
+    icon: BarChart,
+  },
+];
+
+const faqItems = [
+  {
+    question: 'What experience level is required for this course?',
+    answer: 'Our digital marketing program is designed for all skill levels, from beginners to advanced marketers looking to enhance their skills.',
+  },
+  {
+    question: 'How long does the program take to complete?',
+    answer: 'The core program typically takes 8-12 weeks to complete, but you can progress at your own pace with lifetime access to materials.',
+  },
+  {
+    question: 'Do you offer personalized coaching?',
+    answer: 'Yes, we offer one-on-one coaching sessions to provide personalized guidance and feedback on your digital marketing strategy.',
+  },
+];
+
+const seo = {
+  title: 'Affiliate Marketing Coaching - Affiliate Nexus',
+  description: 'Master affeliate marketing with expert coaching and practical strategies.',
+};
+---
+
+<Layout title={seo.title} description={seo.description}>
+  <div class="py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
+          Affiliate Marketing Mastery
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-display font-bold text-text mb-6">
+          Transform Your Affiliate Marketing Skills
+        </h1>
+        <p class="text-lg text-text-light mb-8">
+          Learn proven strategies and techniques to grow your online presence, engage your audience, and drive measurable results.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
+          >
+            Start Your Journey
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </a>
+          <a
+            href="#pricing"
+            class="inline-flex items-center justify-center px-6 py-3 text-base font-medium border border-secondary hover:border-primary text-text hover:text-primary rounded-lg transition-colors duration-200"
+          >
+            View Pricing
+          </a>
+        </div>
+      </div>
+
+      {/* Features Grid */}
+      <div class="grid md:grid-cols-3 gap-8 mb-24">
+        {features.map(({ title, description, icon: Icon }) => (
+          <div class="p-6 bg-background rounded-lg border border-secondary/20">
+            <div class="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+              <Icon className="h-6 w-6 text-primary" />
+            </div>
+            <h3 class="text-xl font-semibold text-text mb-2">{title}</h3>
+            <p class="text-text-light">{description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* What You'll Learn */}
+      <div class="bg-background-alt rounded-2xl p-8 md:p-12 mb-24">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <h2 class="text-3xl font-display font-bold text-text mb-4">
+            What You'll Learn
+          </h2>
+          <p class="text-text-light">
+            Our comprehensive program covers everything you need to succeed in digital marketing.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+          {[
+            'Social Media Marketing Strategy',
+            'Content Creation & Distribution',
+            'SEO & Online Visibility',
+            'Email Marketing Campaigns',
+            'Analytics & Performance Tracking',
+            'Paid Advertising Optimization',
+            'Brand Building & Management',
+            'Marketing Automation Tools',
+          ].map((item) => (
+            <div class="flex items-start gap-4">
+              <CheckCircle className="h-6 w-6 text-primary flex-shrink-0" />
+              <span class="text-text-light">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Pricing Section */}
+      <div id="pricing" class="mb-24">
+        <PricingTable client:visible />
+      </div>
+
+      {/* FAQ Section */}
+      <div class="mb-24">
+        <FAQ
+          client:visible
+          items={faqItems}
+          title="Frequently Asked Questions"
+          description="Find answers to common questions about our digital marketing coaching program."
+        />
+      </div>
+
+      {/* CTA Section */}
+      <div class="text-center">
+        <h2 class="text-3xl font-display font-bold text-text mb-4">
+          Ready to Master Affiliate Marketing?
+        </h2>
+        <p class="text-text-light mb-8">
+          Join our program and transform your digital marketing skills today.
+        </p>
+        <a
+          href="/contact"
+          class="inline-flex items-center px-6 py-3 text-base font-medium text-white bg-primary hover:bg-primary-dark rounded-lg transition-colors duration-200"
+        >
+          Schedule a Free Consultation
+          <ArrowRight className="ml-2 h-5 w-5" />
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>
