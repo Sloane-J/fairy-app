@@ -51,12 +51,7 @@ export default function Navigation() {
             {item.name}
           </a>
         ))}
-        <a
-          href="/contact"
-          className="px-5 py-2 text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-dark transition-colors duration-200"
-        >
-          Book Free Consultation
-        </a>
+        
       </div>
 
       {/* Mobile Navigation Button */}
