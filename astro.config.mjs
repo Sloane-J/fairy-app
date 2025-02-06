@@ -1,21 +1,21 @@
 import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
+  site: 'https://affeliate-nexus.vercel.app/',
+  output: 'static',
   integrations: [
-    react(),  // The include patterns aren't needed, Astro handles this automatically
+    react(),
     tailwind({
       config: { applyBaseStyles: false }
     }),
+    sitemap()
   ],
-  // Remove the site URL unless you're specifically using it for something
-  output: 'static',
   vite: {
     ssr: {
       noExternal: ['framer-motion']
-    },
-    // Remove the manual build optimizations - Vite handles these well by default
-    // and they might be causing the Terser error
+    }
   }
 });
