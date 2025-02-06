@@ -1,3 +1,4 @@
 User-agent: *
-Allow: /
+Disallow:
+
 Sitemap: https://affeliate-nexus.vercel.app/sitemap-index.xml
