@@ -32,7 +32,7 @@ const {
     <title>{title}</title>
     <meta name="description" content={description} />
     
-    <!-- Font preloads -->
+    <!-- Font preloads 
     <link
       rel="preload"
       href="/fonts/inter-var.woff2"
@@ -47,7 +47,7 @@ const {
       type="font/woff2"
       crossorigin
     />
-    
+    -->
     <!-- View Transitions -->
     <ViewTransitions />
     
@@ -57,14 +57,14 @@ const {
     <meta property="og:description" content={description} />
     <meta property="og:image" content="/og-image.jpg" />
     <meta property="og:url" content={Astro.url} />
-    <meta property="og:site_name" content="CoachingPro" />
+    <meta property="og:site_name" content="Affiliate Nexus" />
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/og-image.jpg" />
-    <meta name="twitter:site" content="@coachingpro" />
+    <meta name="twitter:site" content="@affiliate-nexus" />
   </head>
   <body class="bg-background text-text antialiased">
     <div class="flex min-h-screen flex-col">
@@ -74,7 +74,7 @@ const {
       </main>
       <Footer />
     </div>
-    <style is:global>
+    <style is:global> /
       @font-face {
         font-family: 'Inter';
         src: url('/fonts/inter-var.woff2') format('woff2');
