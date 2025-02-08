@@ -1,4 +1,32 @@
+# Global rules
 User-agent: *
-Disallow:
+Allow: /
+Disallow: /api/
+Disallow: /*?*
+Disallow: /webinars/private/
+Disallow: /free-resources/draft/
 
-Sitemap: https://affeliate-nexus.vercel.app/sitemap-index.xml
+# Prevent duplicate content indexing
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+
+# Allow important pages
+Allow: /about
+Allow: /services
+Allow: /blog
+Allow: /testimonials
+Allow: /contact
+Allow: /free-resources
+Allow: /webinars
+Allow: /affiliate-program
+
+# Specific rules for GPTBot
+User-agent: GPTBot
+Disallow: /privacy-policy
+Disallow: /terms-of-service
+
+# Crawl-delay for all bots
+Crawl-delay: 5
+
+# Sitemap
+Sitemap: https://your-domain.com/sitemap-index.xml
