@@ -4,7 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://affeliate-nexus.vercel.app/',
+  site: 'https://affiliate-nexus.vercel.app/',
   output: 'static',
   integrations: [
     react(),
