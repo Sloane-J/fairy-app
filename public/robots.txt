@@ -29,4 +29,4 @@ Disallow: /terms-of-service
 Crawl-delay: 5
 
 # Sitemap
-Sitemap: https://your-domain.com/sitemap-index.xml
+Sitemap: https://affeliate-nexus.vercel.app/sitemap-index.xml

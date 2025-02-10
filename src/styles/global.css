@@ -13,3 +13,9 @@
 body {
   @apply bg-background text-text;
 }
+
+/* Make all Playfair Display text italic by default */
+.font-display, 
+[class*="font-display"] {
+  font-style: italic;
+}
