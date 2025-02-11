@@ -10,8 +10,8 @@ interface BlogSearchProps {
 }
 
 export default function BlogSearch({ onSearch }: BlogSearchProps) {
-  const [query, setQuery] = useState('');
-  const [isFocused, setIsFocused] = useState(false);
+  const [query, setQuery] = useState<string>('');
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   useEffect(() => {
     const debounceTimer = setTimeout(() => {
@@ -20,6 +20,11 @@ export default function BlogSearch({ onSearch }: BlogSearchProps) {
 
     return () => clearTimeout(debounceTimer);
   }, [query, onSearch]);
+
+  const handleClear = () => {
+    setQuery('');
+    onSearch('');
+  };
 
   return (
     <motion.div
@@ -38,19 +43,25 @@ export default function BlogSearch({ onSearch }: BlogSearchProps) {
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder="Search articles..."
+          aria-label="Search articles"
           className="w-full pl-12 pr-12 py-3 rounded-lg border-none focus:outline-none bg-background"
         />
-        <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-text-light" />
+        <Search 
+          className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-text-light" 
+          aria-hidden="true"
+        />
         <AnimatePresence>
           {query && (
             <motion.button
+              type="button"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              onClick={() => setQuery('')}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-secondary/10"
+              onClick={handleClear}
+              aria-label="Clear search"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-1 rounded-full hover:bg-secondary/10 focus:outline-none focus:ring-2 focus:ring-primary/50"
             >
-              <X className="h-4 w-4 text-text-light" />
+              <X className="h-4 w-4 text-text-light" aria-hidden="true" />
             </motion.button>
           )}
         </AnimatePresence>
@@ -64,6 +75,8 @@ export default function BlogSearch({ onSearch }: BlogSearchProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 10 }}
             className="absolute top-full left-0 right-0 mt-2 p-2 bg-background rounded-lg shadow-lg border border-secondary/20 z-50"
+            role="status"
+            aria-live="polite"
           >
             <div className="text-sm text-text-light p-2">
               Searching for "{query}"...
