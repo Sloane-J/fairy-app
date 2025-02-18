@@ -50,6 +50,16 @@ const {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="/og-image.jpg" />
     <meta name="twitter:site" content="@affiliatenexus" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2VQBM4PKVQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2VQBM4PKVQ');
+    </script>
   </head>
   <body class="bg-background text-text antialiased">
     <div class="flex min-h-screen flex-col">
